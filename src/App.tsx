@@ -16,14 +16,14 @@ const DEFAULT_LOCATION = {
 const App = () => {
   const { t, weatherApiLang } = useLanguage();
   const weatherState = useWeatherData(DEFAULT_LOCATION, weatherApiLang);
-  
-  const theme = weatherState.weatherData 
+
+  const theme = weatherState.weatherData
     ? getWeatherTheme(weatherState.weatherData.weather[0].main)
     : { gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' };
 
   return (
-    <Box 
-      sx={{ 
+    <Box
+      sx={{
         minHeight: '100vh',
         background: theme.gradient,
         padding: { xs: 1.5, md: 2 },
@@ -32,8 +32,8 @@ const App = () => {
     >
       <Container maxWidth="md">
         {/* Header with Language Selector */}
-        <Box 
-          sx={{ 
+        <Box
+          sx={{
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -44,17 +44,17 @@ const App = () => {
           <LanguageSelector />
         </Box>
 
-        <Box 
-          sx={{ 
-            textAlign: 'center', 
+        <Box
+          sx={{
+            textAlign: 'center',
             mb: 2,
             animation: 'fadeIn 0.5s ease-in'
           }}
         >
-          <Typography 
-            variant="h4" 
-            component="h1" 
-            sx={{ 
+          <Typography
+            variant="h4"
+            component="h1"
+            sx={{
               fontWeight: 800,
               color: 'white',
               textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
@@ -64,9 +64,9 @@ const App = () => {
           >
             🌤️ {t('app.title')}
           </Typography>
-          <Typography 
-            variant="body2" 
-            sx={{ 
+          <Typography
+            variant="body2"
+            sx={{
               color: 'rgba(255, 255, 255, 0.9)',
               fontWeight: 300,
               textShadow: '1px 1px 2px rgba(0,0,0,0.2)',
@@ -78,10 +78,10 @@ const App = () => {
         </Box>
 
         {/* Search Bar */}
-        <Paper 
+        <Paper
           elevation={3}
-          sx={{ 
-            p: 1.5, 
+          sx={{
+            p: 1.5,
             mb: 2,
             borderRadius: 3,
             backgroundColor: 'rgba(255, 255, 255, 0.95)',
@@ -96,31 +96,6 @@ const App = () => {
           <WeatherCard {...weatherState} />
         </Box>
       </Container>
-
-      {/* CSS Animations */}
-      <style>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(-20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </Box>
   );
 }
